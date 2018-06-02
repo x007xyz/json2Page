@@ -1,0 +1,4 @@
+<i-select v-model="{{value}}">
+    {%for item in options%}<i-option :value="{{item.value}}">{{ item.label }}</i-option>
+{% endfor %}
+</i-select>

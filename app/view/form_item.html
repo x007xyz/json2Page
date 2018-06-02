@@ -1,0 +1,15 @@
+<card>
+  <i-form :model="form" label-position="top" inline>
+    <row :gutter="16">{% for field in fields %}
+      <i-col :lg="6" :md="8" :sm="12" :xs="24">
+        <form-item label="{{field.label}}">
+            {{field.component | safe}}
+        </form-item>
+      </i-col>{% endfor %}
+    </row>
+    <form-item>
+        <i-button type="primary">Submit</i-button>
+        <i-button type="ghost" style="margin-left: 8px">Cancel</i-button>
+    </form-item>
+  </i-form>
+</card>

@@ -1,0 +1,16 @@
+{% for field in fields %}
+<div class="col-xl-3">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="exampleFormControlInput1">字段名称</label>
+        <input type="text" class="form-control" name="fields[{{loop.index0}}].name" value="{{field.name}}" placeholder="字段名称">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">字段说明</label>
+        <input type="text" class="form-control" name="fields[{{loop.index0}}].explain" value="{{field.explain}}" placeholder="字段说明">
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}

@@ -1,0 +1,14 @@
+<template>
+  {% include "form_item.html" %}
+</template>
+<script>
+export default {
+  data () {
+    return {
+      form: {
+        {% for field in fields %}{{field.name}}: '{{field.default}}',{% endfor %}
+      }
+    }
+  }
+}
+</script>

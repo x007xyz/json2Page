@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block main %}
+<form action="/generator/components/save" method="POST">
+  <div class="form-group">
+    <label for="exampleFormControlInput1">组件名称</label>
+    <input type="text" class="form-control" id="type" name="type" value="{{type}}" placeholder="组件名称">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">组件文本</label>
+    <textarea class="form-control" id="content" name="content" rows="3">{{content}}</textarea>
+  </div>
+  <div class="form-group">
+    <button type="button" id="createFields" class="btn btn-primary">解析</button>
+  </div>
+  <div class="row" id="list">
+
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">保存</button>
+</form>
+{% endblock %}
+{% block script %}
+<script>
+  document.getElementById('createFields').addEventListener('click', () => { 
+    const content = document.getElementById('content').value
+    $.ajax({url: '/generator/components', type: 'post', data: {content}, success: function  (data) {
+      $('#list').html(data.content)
+    }})
+  })
+</script>
+{% endblock %}
