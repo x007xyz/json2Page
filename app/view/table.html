@@ -1,0 +1,15 @@
+<template>
+  <card>
+    {% include "filter.html" %}
+    <i-table :columns="columns" :data="list" size="small" ref="table"></i-table>
+  </card>
+</template>
+<script>
+export default {
+  data () {
+    return {
+      {% include "table_data.html" %}
+    }
+  }
+}
+</script>

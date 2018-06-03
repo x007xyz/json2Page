@@ -1,8 +1,8 @@
 <card>
-  <i-form :model="form" label-position="top" inline>
+  <i-form :model="form" label-position="top" :rules="rules" inline>
     <row :gutter="16">{% for field in fields %}
       <i-col :lg="6" :md="8" :sm="12" :xs="24">
-        <form-item label="{{field.label}}">
+        <form-item label="{{field.label}}" prop="{{field.name}}">
             {{field.component | safe}}
         </form-item>
       </i-col>{% endfor %}

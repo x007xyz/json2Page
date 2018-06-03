@@ -10,6 +10,8 @@ module.exports = app => {
   router.post('/form/preview', controller.generator.preview_form);
   router.post('/form/save', controller.generator.save_form);
   router.post('/form/resolve', controller.generator.resolve_form);
-  router.post('/generator/components', controller.generator.components);
-  router.post('/generator/components/save', controller.generator.save_components);
+  router.post('/table/resolve', controller.generator.resolve_table);
+  router.post('/table/preview', controller.generator.preview_table);
+  // router.post('/generator/components', controller.generator.components);
+  // router.post('/generator/components/save', controller.generator.save_components);
 };

@@ -1,0 +1,8 @@
+{% extends "iview.html" %}
+{% block main %}
+{% include "filter.html" %}
+<i-table :columns="columns" :data="list" size="small" ref="table"></i-table>
+{% endblock %}
+{% block data%}
+{% include "table_data.html" %}
+{% endblock %}

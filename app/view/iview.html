@@ -9,17 +9,13 @@
 </head>
 <body>
 <div id="app">
-    {% include "form_item.html" %}
+    {% block main %}{% endblock %}
 </div>
 <script>
     new Vue({
         el: '#app',
         data: {
-            form: {
-              {% for field in fields %}
-              {{field.name}}: '{{field.default}}',
-              {% endfor %}
-            }
+            {% block data %}{% endblock %}
         }
     })
   </script>

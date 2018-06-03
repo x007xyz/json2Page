@@ -1,0 +1,17 @@
+filter: {
+  {% for field in fields %}{{field.name}}: '',{% endfor %}
+},
+columns: [
+  {
+    type: 'selection',
+    width: 60,
+    align: 'center'
+  },
+  {% for field in fields %}{
+    title: '{{field.label}}',
+    key: '{{field.name}}'
+  }{% endfor %}
+],
+list: [
+  {}
+]

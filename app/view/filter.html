@@ -1,0 +1,10 @@
+<i-form ref="filter" :model="filter" inline>
+  {% for field in fields %}<form-item prop="{{field.name}}">
+    {{field.component | safe}}
+  </form-item>
+  {% endfor %}
+  <form-item>
+    <i-button type="primary">查询</i-button>
+    <i-button type="error">删除所选</i-button>
+  </form-item>
+</i-form>

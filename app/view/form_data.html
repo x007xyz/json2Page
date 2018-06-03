@@ -1,0 +1,11 @@
+form: {
+  {% for field in fields %}{{field.name}}: '{{field.default}}',{% endfor %}
+},
+rules: {
+  {% for field in fields %}{{field.name}}: [{
+    required: {{field.required}},
+    message: '{{field.message}}',
+    trigger: '{{field.trigger}}'
+  }],
+{% endfor %}
+}
