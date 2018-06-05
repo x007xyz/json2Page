@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block main %}
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">name</th>
+      <th scope="col">operation</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for item in list%}<tr>
+      <th scope="row">{{loop.index}}</th>
+      <td>{{item.name}}</td>
+      <td>
+        <a href="/del?id={{item._id}}" data-id="{{item._id}}" data-index="{{loop.index}}" class="btn btn-danger btn-sm btn-del">delete</a>
+        <button type="button" data-id="{{item._id}}" data-index="{{loop.index}}" class="btn btn-primary btn-sm btn-check">check</button>
+        <a href="/edit?id={{item._id}}" data-id="{{item._id}}" data-index="{{loop.index}}" class="btn btn-primary btn-sm btn-edit">edit</a>
+      </td>
+    </tr>{%endfor%}
+  </tbody>
+</table>
+
+<div id="dialog" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+  function syntaxHighlight(json) {
+    if (typeof json != 'string') {
+        json = JSON.stringify(json, undefined, 2);
+    }
+    json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function(match) {
+        var cls = 'number';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'key';
+            } else {
+                cls = 'string';
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'boolean';
+        } else if (/null/.test(match)) {
+            cls = 'null';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+}
+  const list = []
+  {%for item in list%}
+    list.push({{item.fields | safe }})
+  {%endfor%}
+  $('.btn-del').on('click', function () {
+    console.log($(this).data().id)
+  })
+  $('.btn-edit').on('click', function () {
+    console.log($(this).data().id)
+  })
+  $('.btn-check').on('click', function () {
+    const index = $(this).data().index - 1
+    $('#dialog .modal-content').html(syntaxHighlight(list[index]))
+    $('#dialog').modal('show')
+    console.log(list[index])
+  })
+</script>
+{% endblock %}

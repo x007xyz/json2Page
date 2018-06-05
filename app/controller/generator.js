@@ -29,6 +29,22 @@ class GeneratorController extends Controller {
   async home() {
     await this.ctx.render('home.html', {});
   }
+  async list() {
+    const list = await this.ctx.model.Form.find({});
+    list.forEach(item => { item.fields = JSON.stringify(item.fields); });
+    await this.ctx.render('list.html', { list });
+  }
+  async edit() {
+    const { id } = this.ctx.query;
+    const form = await this.ctx.model.Form.findById(id);
+    console.log('form', form);
+    await this.ctx.render('home.html', { id: form._id, name: form.name, fields: JSON.stringify(form.fields, null, 2) });
+  }
+  async del() {
+    const { id } = this.ctx.query;
+    await this.ctx.model.Form.findByIdAndRemove(id);
+    this.ctx.redirect('/list');
+  }
   async processFields(fields, model = 'form') {
     for (const field of fields) {
       field.value = `${model}.${field.name}`;
@@ -36,11 +52,30 @@ class GeneratorController extends Controller {
       field.component = await this.getComponent(field);
     }
   }
+  async formatFields(fields) {
+    fields.forEach(field => {
+      for (const key in field) {
+        if (field.hasOwnProperty(key)) {
+          const element = field[key];
+          if (element === 'true') {
+            field[key] = true;
+          } else if (element === 'false') {
+            field[key] = false;
+          }
+        }
+      }
+    });
+  }
   async save() {
     let result = { data: 'success' };
-    const { content: fields, name } = this.ctx.request.body;
+    const { content: fields, name, id } = this.ctx.request.body;
+    this.formatFields(fields);
     if (Array.isArray(fields) && name !== '') {
-      await this.ctx.model.Form.create({ fields, name });
+      if (id !== '') {
+        await this.ctx.model.Form.findByIdAndUpdate(id, { fields, name });
+      } else {
+        await this.ctx.model.Form.create({ fields, name });
+      }
     } else {
       result = { data: 'error' };
     }

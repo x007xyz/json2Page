@@ -1,5 +1,5 @@
 <card>
-  <i-form :model="form" label-position="top" :rules="rules" inline>
+  <i-form :model="form" label-position="top" :rules="rules">
     <row :gutter="16">{% for field in fields %}
       <i-col :lg="6" :md="8" :sm="12" :xs="24">
         <form-item label="{{field.label}}" prop="{{field.name}}">

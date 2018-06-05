@@ -7,11 +7,11 @@
   <div class="col-xl-6 col-lg-12">
     <div class="form-group">
       <label for="exampleFormControlInput1">组件名称</label>
-      <input type="text" class="form-control" id="name" name="type" value="{{type}}" placeholder="表单名称">
+      <input type="text" class="form-control" id="name" name="type" value="{{name}}" placeholder="表单名称">
     </div>
     <div class="form-group">
       <label for="exampleFormControlTextarea1">表单json</label>
-      <textarea class="form-control" id="content" name="content" rows="20">{{content}}</textarea>
+      <textarea class="form-control" id="content" name="content" rows="20">{{fields | safe}}</textarea>
     </div>
     <div class="form-group">
       <button type="button" id="save" class="btn btn-primary">保存</button>
@@ -40,6 +40,7 @@
     const content = document.getElementById('content').value
     console.log(content, eval('(' + content + ')'))
     $.ajax({url: '/save', type: 'post', data: {
+      id: '{{id}}',
       content: eval('(' + content + ')'),
       name: document.getElementById('name').value
     }, success: function  (data) {
