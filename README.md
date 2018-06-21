@@ -26,7 +26,78 @@ placeholder:占位符
 option:选项名称
 options:选项列表，为数组
 
-## 更多功能
-1. 已保存json数据查询
-2. 已保存json数据编辑修改
-3. 根据使用反馈优化更新
+## json结构实例
+```
+[{
+  name: 'input',
+  default: '',
+  type: 'text',
+  placeholder: '测试text',
+  label: '测试text',
+  required: true,
+  message: 'The input cannot be empty'
+}, {
+  name: 'radio',
+  type: 'radio',
+  label: '测试radio',
+  default: false,
+}, {
+  name: 'checkbox',
+  type: 'checkbox',
+  label: '测试checkbox',
+  default: false
+}, {
+  name: 'switch',
+  type: 'switch',
+  label: '测试switch',
+  default: false 
+}, {
+  name: 'date',
+  type: 'date',
+  label: '测试date',
+  default: ''
+}, {
+  name: 'time',
+  type: 'time',
+  label: '测试time',
+  default: ''
+}, {
+  name: 'datetime',
+  type: 'datetime',
+  label: '测试datetime',
+  default: ''
+}, {
+  name: 'daterange',
+  type: 'daterange',
+  label: '测试daterange',
+  default: ''
+}, {
+  name: 'timerange',
+  type: 'timerange',
+  label: '测试timerange',
+  default: ''
+}, {
+  name: 'datetimerange',
+  type: 'datetimerange',
+  label: '测试datetimerange',
+  default: ''
+}, {
+  name: 'radiogroup',
+  type: 'radiogroup',
+  options: ['radio1', 'radio2', 'radio3'],
+  label: '测试radiogroup',
+  default: ''
+}, {
+  name: 'checkboxgroup',
+  type: 'checkboxgroup',
+  options: ['checkbox1', 'checkbox2', 'checkbox3'],
+  label: '测试checkboxgroup',
+  default: ''
+}, {
+  name: 'select',
+  type: 'select',
+  options: [{value: 1, label: 'option1'}, {value: 2, label: 'option2'}, {value: 3, label: 'option3'}],
+  label: '测试select',
+  default: ''
+}]
+```
