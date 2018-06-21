@@ -4,9 +4,12 @@
   </card>
 </template>
 <script>
+import mixin from '@/mixins/list'
 export default {
+  mixins: [mixin],
   data () {
     return {
+      url: '{{name}}',
       {% include "table_data.html" %}
     }
   }

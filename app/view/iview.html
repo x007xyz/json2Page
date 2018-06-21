@@ -15,7 +15,20 @@
     new Vue({
         el: '#app',
         data: {
-            {% block data %}{% endblock %}
+            {% block data %}{% endblock %},
+            selections: [],
+            list: [],
+            pageSum: 10,
+            total: 40,
+            page: 1
+        },
+        methods: {
+            changeSelection(val) {
+                this.selections = val
+            },
+            changePage(page) {
+                this.page = page
+            }
         }
     })
   </script>

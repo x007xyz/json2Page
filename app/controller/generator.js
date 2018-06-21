@@ -82,9 +82,9 @@ class GeneratorController extends Controller {
     this.ctx.body = result;
   }
   async resolve_form() {
-    const fields = this.ctx.request.body.content;
+    const { content: fields, name } = this.ctx.request.body;
     await this.processFields(fields);
-    const data = await this.ctx.renderView('form_vue.html', { fields });
+    const data = await this.ctx.renderView('form_vue.html', { fields, name });
     this.ctx.body = { data };
   }
   async preview_form() {
@@ -93,9 +93,9 @@ class GeneratorController extends Controller {
     await this.ctx.render('form_iview.html', { fields });
   }
   async resolve_table() {
-    const fields = this.ctx.request.body.content;
+    const { content: fields, name } = this.ctx.request.body;
     await this.processFields(fields, 'filter');
-    const data = await this.ctx.renderView('table_vue.html', { fields });
+    const data = await this.ctx.renderView('table_vue.html', { fields, name });
     this.ctx.body = { data };
   }
   async preview_table() {
