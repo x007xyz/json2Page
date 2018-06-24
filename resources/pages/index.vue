@@ -6,6 +6,7 @@
     </h1>
     <nuxt-link class="button" to="/about">
       About page
+      <Card>ddd</Card>
     </nuxt-link>
   </section>
 </template>

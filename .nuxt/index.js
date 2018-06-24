@@ -12,6 +12,7 @@ import { setContext, getLocation, getRouteData } from './utils'
 
 
 /* Plugins */
+import nuxt_plugin_iview_34870650 from 'nuxt_plugin_iview_34870650' // Source: ..\\resources\\plugins\\iview
 
 
 // Component: <no-ssr>
@@ -133,6 +134,7 @@ async function createApp (ssrContext) {
 
   // Plugin execution
   
+  if (typeof nuxt_plugin_iview_34870650 === 'function') await nuxt_plugin_iview_34870650(app.context, inject)
   
 
   // If server-side, wait for async component to be resolved first

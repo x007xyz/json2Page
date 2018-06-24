@@ -28,12 +28,15 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: [ '~/assets/css/main.css' ],
+  css: [ '~/assets/css/main.css', 'iview/dist/styles/iview.css' ],
   /*
    ** Customize the progress-bar color
    */
   loading: {
     color: '#3B8070',
   },
-  build: {},
+  build: {
+    vendor: [ 'axios', '~/plugins/iview' ],
+  },
+  plugins: [{ src: '~/plugins/iview' }],
 };
