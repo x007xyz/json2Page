@@ -9,6 +9,18 @@ class GeneratorController extends Controller {
   get componentsTriggerChange() {
     return [ 'radio', 'radio-group', 'checkbox', 'checkbox-group', 'switch', 'select', 'date', 'daterange', 'time', 'timerange', 'datetime', 'datetimerange' ];
   }
+  get options() {
+    return [{
+      type: 'radio-group',
+      options: [ 'radio1', 'radio2', 'radio3' ],
+    }, {
+      type: 'checkbox-group',
+      options: [ 'checkbox1', 'checkbox2', 'checkbox3' ],
+    }, {
+      type: 'select',
+      options: [{ value: 1, label: 'option1' }, { value: 2, label: 'option2' }, { value: 3, label: 'option3' }],
+    }];
+  }
   async getComponent(field) {
     const fileMap = {
       input: [ 'text', 'password', 'textarea' ],
@@ -85,6 +97,11 @@ class GeneratorController extends Controller {
       if (!field.default) {
         field.default = '';
       }
+      this.options.forEach(option => {
+        if (field.type === option.type) {
+          field.options = option.options;
+        }
+      });
     }
     this.ctx.body = fields;
   }
