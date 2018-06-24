@@ -26,7 +26,7 @@ placeholder:占位符
 option:选项名称
 options:选项列表，为数组
 
-## json结构实例
+## json结构示例
 ```
 [{
   name: 'input',
@@ -82,14 +82,14 @@ options:选项列表，为数组
   label: '测试datetimerange',
   default: ''
 }, {
-  name: 'radiogroup',
-  type: 'radiogroup',
+  name: 'radio-group',
+  type: 'radio-group',
   options: ['radio1', 'radio2', 'radio3'],
   label: '测试radiogroup',
   default: ''
 }, {
-  name: 'checkboxgroup',
-  type: 'checkboxgroup',
+  name: 'checkbox-group',
+  type: 'checkbox-group',
   options: ['checkbox1', 'checkbox2', 'checkbox3'],
   label: '测试checkboxgroup',
   default: ''

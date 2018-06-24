@@ -15,6 +15,7 @@
     </div>
     <div class="form-group">
       <button type="button" id="save" class="btn btn-primary">保存</button>
+      <button type="button" id="preview" class="btn btn-primary">预览字段</button>
       <button type="button" id="resolve_form" class="btn btn-primary">解析为表单</button>
       <button type="button" id="preview_form" class="btn btn-primary">预览表单</button>
       <button type="button" id="resolve_table" class="btn btn-primary">解析为表格</button>
@@ -22,6 +23,57 @@
     </div>
   </div>
   <div class="col-xl-6 col-lg-12">
+    <form>
+      <div class="card">
+        <div class="card-body">
+          <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="name" value="">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="label" class="col-sm-2 col-form-label">label</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="label" value="">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="type" class="col-sm-2 col-form-label">type</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="type" value="">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="message" class="col-sm-2 col-form-label">message</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="message" value="">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="required" class="col-sm-2 col-form-label">required</label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck1">
+              <label class="form-check-label" for="gridCheck1">
+                Example checkbox
+              </label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="placeholder" class="col-sm-2 col-form-label">placeholder</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="placeholder" value="">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="default" class="col-sm-2 col-form-label">default</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="default" value="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
     <div class="form-group" id="list">
       <textarea class="form-control" id="form_content" name="content" rows="10"></textarea>
     </div>
@@ -48,6 +100,16 @@
         $('.alert').alert()
         setTimeout(() => {$('.alert').alert('close')}, 1000)
       }
+    }})
+  })
+  document.getElementById('preview').addEventListener('click', () => {
+    const content = document.getElementById('content').value
+    $.ajax({url: '/preview', type: 'post', data: {
+      id: '{{id}}',
+      content: eval('(' + content + ')'),
+      name: document.getElementById('name').value
+    }, success: function  (data) {
+      console.log('data', data)
     }})
   })
   document.getElementById('resolve_form').addEventListener('click', () => {

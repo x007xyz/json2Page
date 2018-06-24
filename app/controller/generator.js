@@ -66,6 +66,28 @@ class GeneratorController extends Controller {
       }
     });
   }
+  // 预览json字段
+  async preview_field() {
+    const { content: fields } = this.ctx.request.body;
+    for (const field of fields) {
+      if (!field.type) {
+        field.type = 'text';
+      }
+      if (!field.placeholder) {
+        field.placeholder = field.label;
+      }
+      if (!field.message) {
+        field.message = `The ${field.name} cannot be empty`;
+      }
+      if (!field.require) {
+        field.require = true;
+      }
+      if (!field.default) {
+        field.default = '';
+      }
+    }
+    this.ctx.body = fields;
+  }
   async save() {
     let result = { data: 'success' };
     const { content: fields, name, id } = this.ctx.request.body;
