@@ -10,3 +10,7 @@ exports.mongoose = {
   enable: true,
   package: 'egg-mongoose',
 };
+exports.nuxt = {
+  enable: true,
+  package: 'egg-nuxt-lib',
+};

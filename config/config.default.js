@@ -10,6 +10,7 @@ module.exports = appInfo => {
         options: {},
       },
     },
+    nuxt: require('./config.nuxt'),
   });
 
   // use for cookie sign key, should change to your own and keep security

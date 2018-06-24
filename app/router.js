@@ -5,7 +5,7 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  router.get('/', controller.generator.home);
+  // router.get('/', controller.generator.home);
   router.get('/list', controller.generator.list);
   router.get('/edit', controller.generator.edit);
   router.get('/del', controller.generator.del);
