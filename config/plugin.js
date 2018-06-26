@@ -14,3 +14,7 @@ exports.nuxt = {
   enable: true,
   package: 'egg-nuxt-lib',
 };
+exports.validate = {
+  enable: true,
+  package: 'egg-validate',
+};

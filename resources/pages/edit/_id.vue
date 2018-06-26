@@ -1,24 +1,23 @@
 <template>
-   <div>
-      <InitConfig @preview="showPreviewModal"></InitConfig>
-      <PreviewModal v-model="show"></PreviewModal>
-    </div>
+  <div>
+    <InitConfig @preview="showPreviewModal"></InitConfig>
+    <PreviewModal v-model="show"></PreviewModal>
+  </div>
 </template>
 <script>
-import axios from 'axios'
 export default {
+  name: 'edit',
   components: {
     InitConfig: () => import('~/components/InitConfig.vue'),
     PreviewModal: () => import('~/components/PreviewModal.vue')
   },
-  data() {
+  data () {
     return {
-      show: false,
-      form: {
-        name: '',
-        content: ''
-      }
+      show: false
     }
+  },
+  asyncData ({params}) {
+    console.log(params.id)
   },
   methods: {
     showPreviewModal () {
@@ -27,3 +26,5 @@ export default {
   }
 }
 </script>
+<style lang="css" scoped>
+</style>

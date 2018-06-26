@@ -1,5 +1,30 @@
 <template>
-  <nuxt/>
+  <div class="layout">
+      <Layout class="layout-wrapper">
+          <Header :style="{position: 'fixed', width: '100%', zIndex: '9'}">
+              <Menu mode="horizontal" theme="dark" active-name="1">
+                  <div class="layout-logo"></div>
+                  <div class="layout-nav">
+                      <MenuItem name="1">
+                        <nuxt-link to="/">
+                          <Icon type="ios-navigate"></Icon>
+                          新增
+                        </nuxt-link>
+                      </MenuItem>
+                      <MenuItem name="2">
+                        <nuxt-link to="/list">
+                          <Icon type="ios-keypad"></Icon>
+                          列表
+                        </nuxt-link>
+                      </MenuItem>
+                  </div>
+              </Menu>
+          </Header>
+          <Content class="content">
+            <nuxt></nuxt>
+          </Content>
+      </Layout>
+  </div>
 </template>
 
 <script>
@@ -17,38 +42,39 @@ export default {
 }
 </script>
 
-<style>
-.container
-{
-  margin: 0;
-  width: 100%;
-  padding: 100px 0;
+<style scoped>
+.layout {
+  border: 1px solid #d7dde4;
+  background: #f5f7f9;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  height: 100%;
+}
+.layout-logo {
+  width: 100px;
+  height: 30px;
+  background: #5b6270;
+  border-radius: 3px;
+  float: left;
+  position: relative;
+  top: 15px;
+  left: 20px;
+}
+.layout-nav {
+  width: 200px;
+  margin: 0 auto;
+  margin-right: 20px;
+}
+.layout-wrapper {
+  overflow-y: auto;
+  height: 100%;
+}
+.layout-footer-center {
   text-align: center;
 }
-
-.button, .button:visited
-{
-  display: inline-block;
-  color: #3B8070;
-  letter-spacing: 1px;
-  background-color: #fff;
-  border: 2px solid #3B8070;
-  text-decoration: none;
-  text-transform: uppercase;
-  padding: 15px 45px;
-}
-
-.button:hover, .button:focus
-{
-  color: #fff;
-  background-color: #3B8070;
-}
-
-.title
-{
-  color: #505153;
-  font-weight: 300;
-  font-size: 2.5em;
-  margin: 0;
+.content {
+  padding: 104px 50px;
+  height: 100%;
 }
 </style>

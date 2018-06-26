@@ -9,6 +9,7 @@
     "egg-mongoose": "^2.2.1",
     "egg-nuxt-lib": "^1.1.14",
     "egg-scripts": "^2.5.0",
+    "egg-validate": "^1.0.0",
     "egg-view-nunjucks": "^2.2.0",
     "iview": "^2.14.3"
   },

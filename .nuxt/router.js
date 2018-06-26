@@ -3,7 +3,9 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+const _4b0693b0 = () => import('..\\resources\\pages\\list\\index.vue' /* webpackChunkName: "pages_list_index" */).then(m => m.default || m)
 const _5522bb41 = () => import('..\\resources\\pages\\about.vue' /* webpackChunkName: "pages_about" */).then(m => m.default || m)
+const _ecd482b8 = () => import('..\\resources\\pages\\edit\\_id.vue' /* webpackChunkName: "pages_edit__id" */).then(m => m.default || m)
 const _74da9606 = () => import('..\\resources\\pages\\index.vue' /* webpackChunkName: "pages_index" */).then(m => m.default || m)
 
 
@@ -65,9 +67,19 @@ export function createRouter () {
     scrollBehavior,
     routes: [
 		{
+			path: "/list",
+			component: _4b0693b0,
+			name: "list"
+		},
+		{
 			path: "/about",
 			component: _5522bb41,
 			name: "about"
+		},
+		{
+			path: "/edit/:id?",
+			component: _ecd482b8,
+			name: "edit-id"
 		},
 		{
 			path: "/",

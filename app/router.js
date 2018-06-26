@@ -5,8 +5,11 @@
  */
 module.exports = app => {
   const { router, controller } = app;
+  router.post('/fields/format', controller.field.format);
+  router.post('/fields/save', controller.field.save);
+  router.post('/fields/list', controller.field.list);
   // router.get('/', controller.generator.home);
-  router.get('/list', controller.generator.list);
+  // router.get('/list', controller.generator.list);
   router.get('/edit', controller.generator.edit);
   router.get('/del', controller.generator.del);
   router.post('/save', controller.generator.save);
