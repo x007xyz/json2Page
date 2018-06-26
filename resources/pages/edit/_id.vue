@@ -1,7 +1,7 @@
 <template>
   <div>
     <InitConfig @preview="showPreviewModal" :form="form">
-      <Button type="primary" style="margin-left: 12px">生成列表页面</Button>
+      <Button type="primary" style="margin-left: 12px" @click="showList">生成列表页面</Button>
       <Button type="primary" style="margin-left: 12px">生成编辑页面</Button>
       <Button type="primary" style="margin-left: 12px">生成查看页面</Button>
       <Button type="primary" style="margin-left: 12px">生成模拟数据</Button>
@@ -53,7 +53,16 @@ export default {
         console.log(res.data)
         this.value = res.data
       })
+    },
+    showList () {
+      console.log('show')
+      axios.post('/list/vue', this.data).then(res => {
+        console.log(res.data)
+      })
     }
+  },
+  beforeMount () {
+    console.log(this)
   }
 }
 </script>

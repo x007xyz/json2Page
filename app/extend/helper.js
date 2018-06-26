@@ -1,6 +1,29 @@
 'use strict';
-
+const componentsTriggerChange = [ 'radio', 'radio-group', 'checkbox', 'checkbox-group', 'switch', 'select', 'date', 'daterange', 'time', 'timerange', 'datetime', 'datetimerange' ];
 module.exports = {
+  async getComponent(field) {
+    const fileMap = {
+      input: [ 'text', 'password', 'textarea' ],
+      date: [ 'date', 'daterange', 'datetime', 'datetimerange' ],
+      time: [ 'time', 'timerange' ],
+    };
+    let fileName = field.type;
+    for (const key in fileMap) {
+      if (fileMap.hasOwnProperty(key)) {
+        if (fileMap[key].indexOf(fileName) > -1) {
+          fileName = key;
+        }
+      }
+    }
+    return await this.ctx.renderView(`components/${fileName}.html`, field);
+  },
+  async processFields(fields, model = 'form') {
+    for (const field of fields) {
+      field.value = `${model}.${field.name}`;
+      field.trigger = componentsTriggerChange.indexOf(field.type) > -1 ? 'change' : 'blur';
+      field.component = await this.getComponent(field);
+    }
+  },
   components: [{
     name: '输入框', value: 'text',
   }, {
