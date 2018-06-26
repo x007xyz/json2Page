@@ -9,6 +9,8 @@ module.exports = app => {
   router.post('/fields/save', controller.field.save);
   router.post('/fields/list', controller.field.list);
   router.post('/fields/get', controller.field.get);
+
+  router.post('/doc/get', controller.doc.get);
   // router.get('/', controller.generator.home);
   // router.get('/list', controller.generator.list);
   // router.get('/edit', controller.generator.edit);

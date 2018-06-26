@@ -28,7 +28,7 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: [ '~/assets/css/main.css', 'iview/dist/styles/iview.css' ],
+  css: [ '~/assets/css/main.css', 'iview/dist/styles/iview.css', 'mavon-editor/dist/css/index.css' ],
   /*
    ** Customize the progress-bar color
    */
@@ -36,7 +36,7 @@ module.exports = {
     color: '#3B8070',
   },
   build: {
-    vendor: [ 'axios', '~/plugins/iview' ],
+    vendor: [ 'axios', '~/plugins/iview', '~/plugins/markdown' ],
   },
-  plugins: [{ src: '~/plugins/iview' }],
+  plugins: [{ src: '~/plugins/iview' }, { src: '~/plugins/markdown', ssr: false }],
 };

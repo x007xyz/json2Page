@@ -1,8 +1,8 @@
 <template>
-   <div>
-      <InitConfig @preview="showPreviewModal"></InitConfig>
-      <PreviewModal v-model="show" :data="data"></PreviewModal>
-    </div>
+  <div>
+    <InitConfig @preview="showPreviewModal"></InitConfig>
+    <PreviewModal v-model="show" :data="data"></PreviewModal>
+  </div>
 </template>
 <script>
 import axios from 'axios'

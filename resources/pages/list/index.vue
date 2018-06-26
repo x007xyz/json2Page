@@ -84,7 +84,6 @@ export default {
   },
   asyncData({ params }) {
     return axios.post('http://127.0.0.1:7001/fields/list').then(res => {
-      console.log(res.data)
       return { list: res.data }
     })
   }

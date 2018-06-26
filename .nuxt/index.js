@@ -13,6 +13,7 @@ import { setContext, getLocation, getRouteData } from './utils'
 
 /* Plugins */
 import nuxt_plugin_iview_34870650 from 'nuxt_plugin_iview_34870650' // Source: ..\\resources\\plugins\\iview
+import nuxt_plugin_markdown_01cf4265 from 'nuxt_plugin_markdown_01cf4265' // Source: ..\\resources\\plugins\\markdown (ssr: false)
 
 
 // Component: <no-ssr>
@@ -136,6 +137,9 @@ async function createApp (ssrContext) {
   
   if (typeof nuxt_plugin_iview_34870650 === 'function') await nuxt_plugin_iview_34870650(app.context, inject)
   
+  if (process.browser) { 
+    if (typeof nuxt_plugin_markdown_01cf4265 === 'function') await nuxt_plugin_markdown_01cf4265(app.context, inject)
+  }
 
   // If server-side, wait for async component to be resolved first
   if (process.server && ssrContext && ssrContext.url) {

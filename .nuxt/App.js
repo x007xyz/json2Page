@@ -5,6 +5,8 @@ import '..\\resources\\assets\\css\\main.css'
 
 import '..\\node_modules\\.2.14.3@iview\\dist\\styles\\iview.css'
 
+import '..\\node_modules\\.2.6.9@mavon-editor\\dist\\css\\index.css'
+
 
 let layouts = {
 

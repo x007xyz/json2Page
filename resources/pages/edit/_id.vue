@@ -5,9 +5,10 @@
       <Button type="primary" style="margin-left: 12px">生成编辑页面</Button>
       <Button type="primary" style="margin-left: 12px">生成查看页面</Button>
       <Button type="primary" style="margin-left: 12px">生成模拟数据</Button>
-      <Button type="primary" style="margin-left: 12px">生成接口文档</Button>
+      <Button type="primary" style="margin-left: 12px" @click="showApiDoc">生成接口文档</Button>
     </InitConfig>
     <PreviewModal v-model="show" :data="data"></PreviewModal>
+    <mavon-editor v-model="value"></mavon-editor>
   </div>
 </template>
 <script>
@@ -16,15 +17,13 @@ export default {
   name: 'edit',
   components: {
     InitConfig: () => import('~/components/InitConfig.vue'),
-    PreviewModal: () => import('~/components/PreviewModal.vue')
+    PreviewModal: () => import('~/components/PreviewModal.vue'),
+    ApiDoc: () => import('~/components/ApiDoc.vue')
   },
   data () {
     return {
       show: false,
-      data: {
-        name: '',
-        fields: []
-      }
+      value: ''
     }
   },
   asyncData ({params}) {
@@ -33,6 +32,10 @@ export default {
         form: {
           name: res.data.name,
           content: JSON.stringify(res.data.fields, null, 2)
+        },
+        data: {
+          name: res.data.name,
+          fields: res.data.fields
         }
       }
     })
@@ -43,6 +46,12 @@ export default {
         this.data.fields = res.data.fields
         this.data.name = res.data.name
         this.show = true
+      })
+    },
+    showApiDoc () {
+      axios.post('/doc/get', this.data).then(res => {
+        console.log(res.data)
+        this.value = res.data
       })
     }
   }
