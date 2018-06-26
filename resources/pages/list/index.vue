@@ -37,7 +37,7 @@ export default {
                   },
                   on: {
                     click: () => {
-                      this.show(params.index)
+                      this.$router.push({name: 'edit-id', params: {id: params.row._id}})
                     }
                   }
                 },
@@ -55,7 +55,7 @@ export default {
                   },
                   on: {
                     click: () => {
-                      this.show(params.index)
+                      this.$router.push({name: 'edit-id', params: {id: params.row._id}})
                     }
                   }
                 },

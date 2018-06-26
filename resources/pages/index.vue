@@ -1,7 +1,7 @@
 <template>
    <div>
       <InitConfig @preview="showPreviewModal"></InitConfig>
-      <PreviewModal v-model="show"></PreviewModal>
+      <PreviewModal v-model="show" :data="data"></PreviewModal>
     </div>
 </template>
 <script>
@@ -14,15 +14,19 @@ export default {
   data() {
     return {
       show: false,
-      form: {
+      data: {
         name: '',
-        content: ''
+        fields: []
       }
     }
   },
   methods: {
-    showPreviewModal () {
-      this.show = true
+    showPreviewModal (data) {
+      axios.post('/fields/format', { name: data.name, content: eval('(' + data.content + ')') }).then(res => {
+        this.data.fields = res.data.fields
+        this.data.name = res.data.name
+        this.show = true
+      })
     }
   }
 }

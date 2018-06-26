@@ -6,7 +6,6 @@ module.exports = app => {
 
   const FormSchema = new Schema({
     name: { type: String },
-    content: { type: String },
     fields: [{}],
   });
 

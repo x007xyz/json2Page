@@ -31,7 +31,7 @@ class FieldController extends Controller {
     this.ctx.body = { fields, name };
   }
   async save() {
-    const result = 'success';
+    const result = { message: 'success' };
     this.ctx.validate({
       name: 'string',
       fields: {
@@ -45,20 +45,21 @@ class FieldController extends Controller {
       },
     });
     const { fields, name, id } = this.ctx.request.body;
-    if (!id) {
+    if (id) {
       await this.ctx.model.Form.findByIdAndUpdate(id, { fields, name });
     } else {
-      await this.ctx.model.Form.create({ fields, name });
+      const form = await this.ctx.model.Form.create({ fields, name });
+      result.id = form._id;
     }
     this.ctx.body = result;
   }
   async delete() {
-    const { id } = this.ctx.query;
+    const { id } = this.ctx.request.body;
     await this.ctx.model.Form.findByIdAndRemove(id);
     this.ctx.redirect('/list');
   }
   async get() {
-    const { id } = this.ctx.query;
+    const { id } = this.ctx.request.body;
     this.ctx.body = await this.ctx.model.Form.findById(id);
   }
   async list() {

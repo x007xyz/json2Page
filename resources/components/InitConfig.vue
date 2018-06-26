@@ -10,6 +10,7 @@
       </FormItem>
       <FormItem>
         <Button type="primary" @click="preview">预览</Button>
+        <slot></slot>
       </FormItem>
     </Form>
   </Card>
@@ -17,28 +18,26 @@
 <script>
 export default {
   name: 'InitConfig',
-  data () {
-    return {
-      form: {
-        name: '',
-        content: ''
+  props: {
+    form: {
+      type: Object,
+      default () {
+        return {
+          name: '',
+          content: ''
+        }
       }
     }
   },
   methods: {
     preview() {
-      this.$emit('preview')
       const { name, content } = this.form
       if (name === '') {
         this.$Message.error('name不能为空')
       } else if (!/\[*\]/.test(content)) {
         this.$Message.error('json格式错误')
       } else {
-        axios.post('/fields/format', { name, content: eval('(' + content + ')') }).then(res => {
-          this.fields = res.data.fields
-          this.name = res.data.name
-          this.modal = true
-        })
+        this.$emit('preview', this.form)
       }
     }
   }

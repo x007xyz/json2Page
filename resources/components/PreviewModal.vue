@@ -6,10 +6,10 @@
     @on-ok="save"
     width="90">
     <div slot="header" style="color:#f60;text-align:center">
-      <Input v-model="name"></Input>
+      <Input v-model="data.name"></Input>
     </div>
     <Row>
-      <Col span="8" v-for="(field, index) in fields" :key="field.name">
+      <Col span="8" v-for="(field, index) in data.fields" :key="field.name">
         <Card>
           <p slot="title">{{field.name}}</p>
           <Form :model="field" :label-width="80">
@@ -37,6 +37,7 @@
   </Modal>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: 'PreviewModal',
   data () {
@@ -59,22 +60,19 @@ export default {
         { name: 'datetime', value: '日期时间' },
         { name: '起止日期时间', value: 'datetimerange' }
       ],
-      name: '',
-      fields: [
-        {
-          default: '',
-          label: '商品名称',
-          message: 'The name cannot be empty',
-          name: 'name',
-          placeholder: '商品名称',
-          require: true,
-          type: 'text'
-        }
-      ]
     }
   },
   props: {
-    value: Boolean
+    value: Boolean,
+    data: {
+      type: Object,
+      default () {
+        return {
+          name: '',
+          fields: []
+        }
+      }
+    }
   },
   watch: {
     value: {
@@ -104,19 +102,20 @@ export default {
           options: [{ value: 1, label: 'option1' }, { value: 2, label: 'option2' }, { value: 3, label: 'option3' }]
         }
       ].forEach(item => {
-        if (item.type === this.fields[index].type) {
-          this.fields[index].options = item.options
+        if (item.type === this.data.fields[index].type) {
+          this.data.fields[index].options = item.options
           flag = true
         }
       })
       if (!flag) {
-        delete this.fields[index].options
+        delete this.data.fields[index].options
       }
     },
     save() {
-      axios.post('/fields/save', { name: this.name, fields: this.fields }).then(res => {
-        if (res.data === 'success') {
+      axios.post('/fields/save', { name: this.data.name, fields: this.data.fields }).then(res => {
+        if (res.data.message === 'success') {
           this.$Message.success('保存成功')
+          this.$router.push({name: 'edit-id', params: {id: res.data.id}})
         }
       })
     }
