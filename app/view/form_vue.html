@@ -2,7 +2,9 @@
   {% include "form_template.html" %}
 </template>
 <script>
+import mixin from '@/mixins/edit'
 export default {
+  mixins: [mixin],
   data () {
     return {
       {% include "form_data.html" %}
