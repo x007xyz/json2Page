@@ -83,8 +83,7 @@ export default {
     }
   },
   asyncData({ params }) {
-    const baseUrl = isDev ? 'http://127.0.0.1:7001' : 'http://chenzhangxiang:7001'
-    return axios.post(`${baseUrl}/fields/list`).then(res => {
+    return axios.post('/fields/list').then(res => {
       return { list: res.data }
     })
   }
