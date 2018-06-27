@@ -51,7 +51,9 @@ columns: [
             marginRight: '5px'
           },
           on: {
-            click: () => {}
+            click: () => {
+               this.deleteItem(params.row.id)
+            }
           }
         }, '删除')
       ])
