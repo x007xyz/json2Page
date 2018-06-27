@@ -1,0 +1,11 @@
+<card>
+  <p slot="title">{{name}}</p>
+  <table border="1" class="baseDataTable">
+    {% for field in fields %}
+    {%if loop.index % 2 === 1%}<tr>{%endif%}
+      <td class="speTd">{{field.label}}</td>
+      <td>{{('{{form.' +field.name+ '}}') | safe}}</td>
+    {%if loop.index % 2 === 2%}</tr>tr>{%endif%}
+    {%endfor%}
+  </table>
+</card>

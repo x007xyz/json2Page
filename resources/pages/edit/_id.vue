@@ -2,13 +2,19 @@
   <div>
     <InitConfig @preview="showPreviewModal" :form="form">
       <Button type="primary" style="margin-left: 12px" @click="showList">生成列表页面</Button>
-      <Button type="primary" style="margin-left: 12px">生成编辑页面</Button>
-      <Button type="primary" style="margin-left: 12px">生成查看页面</Button>
+      <Button type="primary" style="margin-left: 12px" @click="showEdit">生成编辑页面</Button>
+      <Button type="primary" style="margin-left: 12px" @click="showCheck">生成查看页面</Button>
       <Button type="primary" style="margin-left: 12px">生成模拟数据</Button>
       <Button type="primary" style="margin-left: 12px" @click="showApiDoc">生成接口文档</Button>
     </InitConfig>
     <PreviewModal v-model="show" :data="data"></PreviewModal>
     <mavon-editor v-model="value"></mavon-editor>
+    <Modal
+        v-model="modal"
+        width="90"
+        title="Common Modal dialog box title">
+        <iframe src="" frameborder="0" id="frame" style="width: 100%;height: 400px;"></iframe>
+    </Modal>
   </div>
 </template>
 <script>
@@ -22,6 +28,7 @@ export default {
   },
   data () {
     return {
+      modal: false,
       show: false,
       value: ''
     }
@@ -55,9 +62,21 @@ export default {
       })
     },
     showList () {
-      console.log('show')
-      axios.post('/list/vue', this.data).then(res => {
-        console.log(res.data)
+      axios.post('/list/html', this.data).then(res => {
+        document.getElementById('frame').srcdoc = res.data
+        this.modal = true
+      })
+    },
+    showEdit () {
+      axios.post('/edit/html', this.data).then(res => {
+        document.getElementById('frame').srcdoc = res.data
+        this.modal = true
+      })
+    },
+    showCheck () {
+      axios.post('/check/html', this.data).then(res => {
+        document.getElementById('frame').srcdoc = res.data
+        this.modal = true
       })
     }
   },

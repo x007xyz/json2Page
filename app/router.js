@@ -13,6 +13,13 @@ module.exports = app => {
   router.post('/doc/get', controller.doc.get);
 
   router.post('/list/vue', controller.list.vue);
+  router.post('/list/html', controller.list.html);
+
+  router.post('/edit/vue', controller.edit.vue);
+  router.post('/edit/html', controller.edit.html);
+
+  router.post('/check/vue', controller.check.vue);
+  router.post('/check/html', controller.check.html);
   // router.get('/', controller.generator.home);
   // router.get('/list', controller.generator.list);
   // router.get('/edit', controller.generator.edit);
