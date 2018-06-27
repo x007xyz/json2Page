@@ -46,7 +46,7 @@ export default {
     }
   },
   asyncData ({params}) {
-    return axios.post('http://localhost:7001/fields/get', {id: params.id}).then(res => {
+    return axios.post('http:/chenzhangxiang:7001/fields/get', {id: params.id}).then(res => {
       return { 
         form: {
           name: res.data.name,
