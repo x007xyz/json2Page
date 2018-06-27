@@ -45,8 +45,9 @@ export default {
       show: false
     }
   },
-  asyncData ({params}) {
-    return axios.post('/fields/get', {id: params.id}).then(res => {
+  asyncData ({params, isDev}) {
+    const baseUrl = isDev ? 'http://127.0.0.1:7001' : 'http://chenzhangxiang:7001'
+    return axios.post(`${baseUrl}/fields/get`, {id: params.id}).then(res => {
       return { 
         form: {
           name: res.data.name,
