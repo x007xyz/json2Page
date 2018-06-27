@@ -83,7 +83,7 @@ export default {
     }
   },
   asyncData({ params }) {
-    return axios.post('http:/chenzhangxiang:7001/fields/list').then(res => {
+    return axios.post('/fields/list').then(res => {
       return { list: res.data }
     })
   }
