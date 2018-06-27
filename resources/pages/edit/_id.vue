@@ -8,10 +8,11 @@
       <Button type="success" style="margin-left: 12px" @click="showEditCode">生成编辑代码</Button>
       <Button type="success" style="margin-left: 12px" @click="showCheckCode">生成查看代码</Button>
       <Button type="primary" style="margin-left: 12px">生成模拟数据</Button>
-      <Button type="primary" style="margin-left: 12px" @click="showApiDoc">生成接口文档</Button>
+      <Button type="primary" style="margin-left: 12px" @click="showApiDoc = true">生成接口文档</Button>
     </InitConfig>
     <PreviewModal v-model="show" :data="data"></PreviewModal>
-    <mavon-editor v-model="value"></mavon-editor>
+    <ApiDoc v-model="showApiDoc" :data="data"></ApiDoc>
+    <!-- <mavon-editor v-model="showApiDoc" :data="data"></mavon-editor> -->
     <Modal
         v-model="modal"
         width="90"
@@ -40,8 +41,8 @@ export default {
       code: '',
       modal: false,
       showCode: false,
-      show: false,
-      value: ''
+      showApiDoc: false,
+      show: false
     }
   },
   asyncData ({params}) {
@@ -64,12 +65,6 @@ export default {
         this.data.fields = res.data.fields
         this.data.name = res.data.name
         this.show = true
-      })
-    },
-    showApiDoc () {
-      axios.post('/doc/get', this.data).then(res => {
-        console.log(res.data)
-        this.value = res.data
       })
     },
     showList () {

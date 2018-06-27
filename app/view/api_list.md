@@ -2,7 +2,7 @@
     
 **简要描述：** 
 
-- 保存{{name}}接口
+- 获取{{name}}列表接口
 
 **请求URL：** 
 - ` http://xx.com/api/user/register/list `

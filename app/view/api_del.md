@@ -2,7 +2,7 @@
     
 **简要描述：** 
 
-- 保存{{name}}接口
+- 删除{{name}}接口
 
 **请求URL：** 
 - ` http://xx.com/api/user/{{name}}/del `

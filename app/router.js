@@ -11,6 +11,9 @@ module.exports = app => {
   router.post('/fields/get', controller.field.get);
 
   router.post('/doc/get', controller.doc.get);
+  router.post('/doc/list', controller.doc.list);
+  router.post('/doc/save', controller.doc.save);
+  router.post('/doc/del', controller.doc.del);
 
   router.post('/list/vue', controller.list.vue);
   router.post('/list/html', controller.list.html);

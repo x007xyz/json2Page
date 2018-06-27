@@ -5,7 +5,7 @@
 - 保存{{name}}接口
 
 **请求URL：** 
-- ` http://xx.com/api/user/register `
+- ` http://xx.com/api/user/register/save `
   
 **请求方式：**
 - POST 
