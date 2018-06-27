@@ -4,6 +4,9 @@
       <Button type="primary" style="margin-left: 12px" @click="showList">生成列表页面</Button>
       <Button type="primary" style="margin-left: 12px" @click="showEdit">生成编辑页面</Button>
       <Button type="primary" style="margin-left: 12px" @click="showCheck">生成查看页面</Button>
+      <Button type="success" style="margin-left: 12px" @click="showListCode">生成列表代码</Button>
+      <Button type="success" style="margin-left: 12px" @click="showEditCode">生成编辑代码</Button>
+      <Button type="success" style="margin-left: 12px" @click="showCheckCode">生成查看代码</Button>
       <Button type="primary" style="margin-left: 12px">生成模拟数据</Button>
       <Button type="primary" style="margin-left: 12px" @click="showApiDoc">生成接口文档</Button>
     </InitConfig>
@@ -12,8 +15,14 @@
     <Modal
         v-model="modal"
         width="90"
-        title="Common Modal dialog box title">
+        title="预览">
         <iframe src="" frameborder="0" id="frame" style="width: 100%;height: 400px;"></iframe>
+    </Modal>
+    <Modal
+        v-model="showCode"
+        width="90"
+        title="代码">
+        <Input type="textarea" v-model="code" :rows="24"></Input>
     </Modal>
   </div>
 </template>
@@ -28,7 +37,9 @@ export default {
   },
   data () {
     return {
+      code: '',
       modal: false,
+      showCode: false,
       show: false,
       value: ''
     }
@@ -67,16 +78,34 @@ export default {
         this.modal = true
       })
     },
+    showListCode () {
+      axios.post('/list/vue', this.data).then(res => {
+        this.code = res.data
+        this.showCode = true
+      })
+    },
     showEdit () {
       axios.post('/edit/html', this.data).then(res => {
         document.getElementById('frame').srcdoc = res.data
         this.modal = true
       })
     },
+    showEditCode () {
+      axios.post('/edit/vue', this.data).then(res => {
+        this.code = res.data
+        this.showCode = true
+      })
+    },
     showCheck () {
       axios.post('/check/html', this.data).then(res => {
         document.getElementById('frame').srcdoc = res.data
         this.modal = true
+      })
+    },
+    showCheckCode () {
+      axios.post('/check/vue', this.data).then(res => {
+        this.code = res.data
+        this.showCode = true
       })
     }
   },

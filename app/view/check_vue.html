@@ -4,13 +4,11 @@
   </card>
 </template>
 <script>
-  export default {
-    mixins: [mixin],
-    data() {
-      return {
-        url: '{{name}}',
-        {% include "check_data.html" %}
-      }
+export default {
+  data() {
+    return {
+      url: '{{name}}',
+      {% include "check_data.html" %}
     }
   }
 }
